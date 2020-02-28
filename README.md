@@ -4,6 +4,7 @@
 
 * PHP >= 7.4 (Ctype, iconv, JSON, PCRE, Session, SimpleXML, Tokenizer, php-pgsql)
 * PostgreSQL >= 12
+* Symfony >= 5
 * Composer
 * yarn (или npm)
 
