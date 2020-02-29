@@ -13,6 +13,7 @@ class MapController extends AbstractController
      */
     public function index(AuthenticationUtils $authUtils)
     {
+        $user = $this->getUser();
         $error = $authUtils->getLastAuthenticationError();
         $lastUsername = $authUtils->getLastUsername();
         
@@ -20,6 +21,7 @@ class MapController extends AbstractController
             'controller_name' => 'MapController',
             'last_username' => $lastUsername,
             'error' => $error,
+            'user' => $user,
         ]);
     }
 

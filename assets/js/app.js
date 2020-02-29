@@ -8,3 +8,5 @@ var map = new mapboxgl.Map({
     zoom: 15.5,
     center: [37.1618431,56.7381785]
 });
+
+map.addControl(new mapboxgl.NavigationControl());

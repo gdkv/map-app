@@ -18,16 +18,17 @@ main {
 .aside {
     font-family: 'Montserrat';
     font-weight: 300;
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     width: 320px;
     height: 100%;
     z-index: 30;
-    background-color: rgba(0,0,0,0.85);
+    background-color: rgba(0, 0, 0, 0.85);
     color: #ffffff;
     font-size: 16.5px;
     padding: 50px 20px 0;
+    box-sizing: border-box;
 
     &-logo {
         display: block;
@@ -57,28 +58,28 @@ main {
                 input {
                     background-color: #333333;
                     width: 90%;
-                    border-radius: 15px;
+                    border-radius: 20px;
                     border: medium none;
-                    font-size: 18px;
+                    font-size: 16.5px;
                     font-family: 'Montserrat';
                     font-weight: 300;
-                    padding: 5px 20px;
+                    padding: 10px 20px;
                     box-sizing: border-box;
                     margin: 0 0 20px;
                     outline: none;
-                    color: #333333;
+                    color: #ffffff;
                 }
 
                 button {
                     &[type='submit'] {
                         background-color: #D81159;
                         width: 90%;
-                        border-radius: 15px;
+                        border-radius: 20px;
                         border: medium none;
-                        font-size: 18px;
+                        font-size: 16.5px;
                         font-family: 'Montserrat';
                         font-weight: 300;
-                        padding: 5px 20px;
+                        padding: 10px 20px;
                         box-sizing: border-box;
                         margin: 0 0 20px;
                         outline: none;
@@ -89,7 +90,55 @@ main {
         }
     }
 
-    &-profile {}
+    &-profile {
+        margin-top: 40px;
+        .user {
+            font-size: 0;
+            &-avatar,
+            &-name {
+                display: inline-block;
+                vertical-align: top;
+            }
+            &-avatar {
+                // border: 1px solid rgba(255,255,255,0.5);
+                // padding: 10px 15px;
+                // border-radius: 45px;
+                margin-right: 30px;
+                i {
+                    font-size: 40px;
+                }
+            }
+            &-name {
+                h4 {
+                    font-weight: 700;
+                    font-size: 19px;
+                }
+                p {
+                    font-size: 15px;
+                }
+            }
+        }
+    }
 
-    &-bottom {}
+    &-bottom {
+        bottom: 0;
+        left: 0;
+        position: absolute;
+        width: 100%;
+        text-align: left;
+
+        a {
+            display: block;
+            color: #ffffff;
+            font-size: 15.5px;
+            padding: 20px 40px;
+            background-color: rgba(255, 255, 255, .35);
+            text-decoration: none;
+
+            &:hover {
+                color: #666666;
+                background-color: rgba(255, 255, 255, .75);
+            }
+        }
+    }
 }
