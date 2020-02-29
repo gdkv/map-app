@@ -1,0 +1,24 @@
+<div class="aside-login">
+    <p>Авторизуйтесь, чтобы иметь возможность использовать все функции данного сервиса</p>
+    {% if error %}
+        <div class="aside-login__error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <form class="aside-login__form" action="{{ path('map_index') }}" method="post" autocomplete="off">
+        
+        <div class="aside-login__form-row">
+            <input type="text" placeholder="Почта" name="_username" value="{{ last_username }}" autocomplete="off"/>
+        </div>
+
+        <div class="aside-login__form-row">
+            <input type="password" placeholder="Пароль" name="_password" autocomplete="off"/>
+        </div>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}">
+        <div class="aside-login__form-row">
+            <button class="btn aside-login__form__button" type="submit">Войти</button>
+        </div>
+    </form>
+
+</div>

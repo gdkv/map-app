@@ -18,8 +18,8 @@ symfony check:requirements
 # cоздаем базу
 CREATE DATABASE map_db;
 # создаем пользователя и пароль
-CREATE USER map_user WITH ENCRYOTED PASSWORD 'pass';
-GRANT ALL PRIVILEGES ON DATABESE map_db TO map_user;
+CREATE USER map_user WITH ENCRYPTED PASSWORD 'pass';
+GRANT ALL PRIVILEGES ON DATABASE map_db TO map_user;
 # даем привелегию пользователю заводить базы (может пригодиться для тестов)
 ALTER USER map_user CREATEDB;
 # региональные настройки

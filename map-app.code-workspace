@@ -1,0 +1,30 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"php.suggest.basic": false,
+		"editor.quickSuggestions": { "comments": true },
+		"php-cs-fixer.rules": "@PhpCsFixer",
+		"[php]": {
+			"editor.defaultFormatter": "junstyle.php-cs-fixer",
+			"editor.formatOnSave": true
+		},
+		"emmet.includeLanguages": {
+			"twig": "html"
+		},
+		"sqltools.connections": [
+			{
+				"database": "map_db",
+				"dialect": "PostgreSQL",
+				"name": "Map App DB",
+				"password": "map123pass",
+				"port": 5432,
+				"server": "localhost",
+				"username": "map_user"
+			}
+		],
+	}
+}

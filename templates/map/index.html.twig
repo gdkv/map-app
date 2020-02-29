@@ -1,7 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<main>
-    <h1>Start!</h1>
+<main id="main">
+    
+    <aside class="aside">
+        <h3 class='aside-logo'>map<span>app</span></h3>
+
+        {% if is_granted('ROLE_USER') %}
+            {% include "security/login.html.twig" %}
+        {% else %}
+            {% include "security/login.html.twig" %}
+        {% endif %}
+
+        <div class="aside-bottom">
+            <a href="#">О сервисе</a>
+            {% if is_granted('ROLE_USER') %}
+                <a href="{{ path('logout') }}">Выход</a>
+            {% else %}
+                <a href="#">Регистрация</a>
+            {% endif %}
+        </div>
+    </aside>
 </main>
 {% endblock %}

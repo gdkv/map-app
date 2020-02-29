@@ -1,5 +1,95 @@
 @import 'reset';
 
 body {
-    background-color: lightgray;
+    font-family: 'Montserrat';
+    font-weight: 100;
+    background-color:#000000;
+}
+
+h1 {
+    font-size: 42px;
+    font-weight: 700;
+}
+
+main {
+    height: 100vh;
+}
+
+.aside {
+    font-family: 'Montserrat';
+    font-weight: 300;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 320px;
+    height: 100%;
+    z-index: 30;
+    background-color: rgba(0,0,0,0.85);
+    color: #ffffff;
+    font-size: 16.5px;
+    padding: 50px 20px 0;
+
+    &-logo {
+        display: block;
+        text-align: center;
+        font-size: 32.5px;
+        font-weight: 700;
+        margin-bottom: 30px;
+
+        span {
+            color: #D81159;
+        }
+    }
+
+    &-login {
+        display: block;
+        text-align: center;
+
+        p {
+            font-size: 12.5px;
+            color: #999999;
+            line-height: 14px;
+            margin-bottom: 30px;
+        }
+
+        &__form {
+            &-row {
+                input {
+                    background-color: #333333;
+                    width: 90%;
+                    border-radius: 15px;
+                    border: medium none;
+                    font-size: 18px;
+                    font-family: 'Montserrat';
+                    font-weight: 300;
+                    padding: 5px 20px;
+                    box-sizing: border-box;
+                    margin: 0 0 20px;
+                    outline: none;
+                    color: #333333;
+                }
+
+                button {
+                    &[type='submit'] {
+                        background-color: #D81159;
+                        width: 90%;
+                        border-radius: 15px;
+                        border: medium none;
+                        font-size: 18px;
+                        font-family: 'Montserrat';
+                        font-weight: 300;
+                        padding: 5px 20px;
+                        box-sizing: border-box;
+                        margin: 0 0 20px;
+                        outline: none;
+                        color: #ffffff;
+                    }
+                }
+            }
+        }
+    }
+
+    &-profile {}
+
+    &-bottom {}
 }
