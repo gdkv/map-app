@@ -10,7 +10,12 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <main id="main">
+            
+            {% block body %}{% endblock %}
+
+        </main>
+        
         {% block javascripts %}
             <script src="https://kit.fontawesome.com/69d3fe38b5.js" crossorigin="anonymous"></script>
             {{ encore_entry_script_tags('js/app') }}

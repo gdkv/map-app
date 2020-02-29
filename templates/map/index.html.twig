@@ -1,25 +1,23 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<main id="main">
-    
-    <aside class="aside">
-        <h3 class='aside-logo'>map<span>app</span></h3>
+<aside class="aside">
+    <h3 class='aside-logo'>map<span>app</span></h3>
 
+    {% if is_granted('ROLE_USER') %}
+        {% include "security/profile.html.twig" %}
+    {% else %}
+        {% include "security/login.html.twig" %}
+    {% endif %}
+
+    <div class="aside-bottom">
         {% if is_granted('ROLE_USER') %}
-            {% include "security/profile.html.twig" %}
+            <a href="{{ path('map_logout') }}">Выход</a>
         {% else %}
-            {% include "security/login.html.twig" %}
+            <a href="{{ path('map_register') }}">Регистрация</a>
         {% endif %}
-
-        <div class="aside-bottom">
-            {% if is_granted('ROLE_USER') %}
-                <a href="{{ path('map_logout') }}">Выход</a>
-            {% else %}
-                <a href="#">Регистрация</a>
-            {% endif %}
-            <a href="#">О сервисе</a>
-        </div>
-    </aside>
-</main>
+        <a href="#">О сервисе</a>
+    </div>
+</aside>
 {% endblock %}
+
