@@ -29,10 +29,31 @@ ALTER ROLE map_user SET timezone TO 'Europe/Moscow';
 
 ### Symfony
 
+#### dev
+
 ```bash
-composer install --no-dev --optimize-autoloader
+composer install
 symfony console doctrine:migrations:migrate
 symfony console doctrine:fixtures:load
+yarn install
+yarn encore dev --watch
+symfony console cache:clear
+```
+
+#### production
+
+заводим .env.local:
+
+```txt
+APP_ENV=prod
+APP_DEBUG=0
+DATABASE_URL=pgsql://user:pass@127.0.0.1:5432/db
+```
+
+```bash
+composer install --no-dev --optimize-autoloader
+php bin/console doctrine:migration:migrate
+yarn install
 yarn encore production
-APP_ENV=prod APP_DEBUG=0 php bin/console cache:clear
+php bin/console cache:clear   
 ```

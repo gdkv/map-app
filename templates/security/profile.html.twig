@@ -8,7 +8,16 @@
             <p>{{ user.email }}</p>
         </div>
     </div>
-    <p>Теперь вы можете добавить сколько угодно заметок на карту</p>
+    <div class="user-pointers">
+    {% for marker in markers %}
+        <div class="user-pointers__pointer">
+            <h5>{{ marker.title }}</h5>
+            <p>{{ marker.description }}</p>
+        </div>
+    {% else %}
+        <p>Теперь вы можете добавить сколько угодно заметок на карту</p>
+    {% endfor %}
+    </div>
     <div class="marker-add">
         <a class="btn marker-add__btn" href="{{ path('marker_add') }}">Добавить точку на карте</a>
     </div>

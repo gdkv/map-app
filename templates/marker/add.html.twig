@@ -5,7 +5,26 @@
 {% block body %}
 
     <div class="aside-add-button">
-        
+        <div class="aside-login">
+        <p>Заполните форму. Все поля являются обязательными</p>
+        {{ form_start(markerForm, {'attr': {'class': 'aside-login__form'}}) }}
+            <div class="aside-login__form-row">
+                {{ form_row(markerForm.title, {'attr': {'placeholder': 'Заголовок'}}) }}
+            </div>
+            <div class="aside-login__form-row">
+                {{ form_row(markerForm.lat, {'attr': {'placeholder': 'Широта'}}) }}
+            </div>
+            <div class="aside-login__form-row">
+                {{ form_row(markerForm.lon, {'attr': {'placeholder': 'Долгота'}}) }}
+            </div>
+            <div class="aside-login__form-row">
+                {{ form_row(markerForm.description, {'attr': {'placeholder': 'Описание'}}) }}
+            </div>
+            <div class="aside-login__form-row">
+                <button class="btn aside-login__form__button" type="submit">Добавить</button>
+            <div>
+        {{ form_end(markerForm) }}
+    </div>
     </div>
 
 {% endblock %}
