@@ -9,9 +9,20 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 class RegistrationController extends AbstractController
 {
+    /**
+     * @var FlashBagInterface
+     */
+    private $flashBag;
+
+    public function __construct(FlashBagInterface $flashBag)
+    {
+        $this->flashBag = $flashBag;
+    }
+
     /**
      * @Route("/register", name="map_register")
      */
@@ -32,6 +43,8 @@ class RegistrationController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($user);
             $entityManager->flush();
+
+            $this->flashBag->add('notice', 'Ура! Аккаунт создан 🎉 Теперь авторизуйтесь используя регистрационные данные');
 
             return $this->redirectToRoute('map_index');
         }
