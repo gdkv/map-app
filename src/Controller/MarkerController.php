@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 /**
  * @Route("/marker")
@@ -61,6 +62,7 @@ class MarkerController extends AbstractController
 
     /**
      * @Route("/add", name="marker_add")
+     * @IsGranted("ROLE_USER", statusCode=403, message="Access Denied")
      */
     public function add(Request $request)
     {
@@ -84,6 +86,7 @@ class MarkerController extends AbstractController
 
     /**
      * @Route("/edit/{id}", name="marker_edit")
+     * @IsGranted("POST_EDIT", subject="marker", statusCode=403, message="Access Denied")
      */
     public function edit(Request $request, Marker $marker)
     {
@@ -106,6 +109,7 @@ class MarkerController extends AbstractController
 
     /**
      * @Route("/delete/{id}", name="marker_delete")
+     * @IsGranted("POST_DELETE", subject="marker", statusCode=403, message="Access Denied")
      */
     public function delete(Marker $marker)
     {
