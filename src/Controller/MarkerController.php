@@ -44,7 +44,7 @@ class MarkerController extends AbstractController
                 "type" => 'Feature',
                 "geometry" => [
                     "type" => 'Point',
-                    "coordinates" => $marker->getCoord(),
+                    "coordinates" => [$marker->getLat(), $marker->getLon()]
                 ],
                 "properties" => [
                     "title" => $marker->getTitle(),
@@ -70,10 +70,6 @@ class MarkerController extends AbstractController
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
-            $marker->setCoord([
-                (float)$form->get('lat')->getData(),
-                (float)$form->get('lon')->getData(),
-            ]);
             $marker->setUsers($currentUser);
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($marker);
@@ -87,22 +83,35 @@ class MarkerController extends AbstractController
     }
 
     /**
-     * @Route("/edit", name="marker_edit")
+     * @Route("/edit/{id}", name="marker_edit")
      */
-    public function edit()
+    public function edit(Request $request, Marker $marker)
     {
+        $currentUser = $this->getUser();
+
+        $form = $this->createForm(MarkerType::class, $marker);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $marker->setUsers($currentUser);
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+
+            return $this->redirectToRoute('map_index');
+        }
         return $this->render('marker/add.html.twig', [
-            'controller_name' => 'MarkerController',
+            'markerForm' => $form->createView(),
         ]);
     }
 
     /**
-     * @Route("/delete", name="marker_delete")
+     * @Route("/delete/{id}", name="marker_delete")
      */
-    public function delete()
+    public function delete(Marker $marker)
     {
-        return $this->render('marker/add.html.twig', [
-            'controller_name' => 'MarkerController',
-        ]);
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($marker);
+        $entityManager->flush();
+        return $this->redirectToRoute('map_index');
     }
 }

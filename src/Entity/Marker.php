@@ -29,11 +29,6 @@ class Marker
     private $description;
 
     /**
-     * @ORM\Column(type="simple_array")
-     */
-    private $coord = [];
-
-    /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="marker")
      */
     private $users;
@@ -47,6 +42,16 @@ class Marker
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $editAt;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $lat;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $lon;
 
     public function getId(): ?int
     {
@@ -73,18 +78,6 @@ class Marker
     public function setDescription(?string $description): self
     {
         $this->description = $description;
-
-        return $this;
-    }
-
-    public function getCoord(): ?array
-    {
-        return $this->coord;
-    }
-
-    public function setCoord(array $coord): self
-    {
-        $this->coord = $coord;
 
         return $this;
     }
@@ -139,5 +132,29 @@ class Marker
     public function preUpdate()
     {
         $this->editAt = new \DateTime();
+    }
+
+    public function getLat(): ?float
+    {
+        return $this->lat;
+    }
+
+    public function setLat(float $lat): self
+    {
+        $this->lat = $lat;
+
+        return $this;
+    }
+
+    public function getLon(): ?float
+    {
+        return $this->lon;
+    }
+
+    public function setLon(float $lon): self
+    {
+        $this->lon = $lon;
+
+        return $this;
     }
 }

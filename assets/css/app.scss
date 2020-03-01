@@ -26,7 +26,7 @@ main {
     font-weight: 300;
     padding: 10px 20px;
     box-sizing: border-box;
-    margin: 0 0 20px;
+    margin: 0 auto 20px;
     outline: none;
     color: #ffffff;
     text-decoration: none;
@@ -37,7 +37,7 @@ p {
     font-size: 12.5px;
     color: #999999;
     line-height: 14px;
-    margin-bottom: 30px;
+    margin: 7px 0 30px;
 }
 
 .aside {
@@ -142,6 +142,22 @@ p {
                 position: relative;
                 width: 100%;
                 height: 350px;
+
+                &__pointer {
+                    p {
+                        margin-bottom: 5px;
+                    }
+                    &-buttons {
+                        margin-bottom: 30px;
+                        
+                        a {
+                            color: #dfdfdf;
+                            text-decoration: none;
+                            font-weight: 700;
+                            font-size: 13px;
+                        }
+                    }
+                }
             }
         }
     }

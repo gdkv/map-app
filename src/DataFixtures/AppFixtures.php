@@ -33,22 +33,26 @@ class AppFixtures extends Fixture
         [
             'Заголовок метки',
             'Описание метки',
-            [37.1618431, 56.7381785]
+            37.1618431, 
+            56.7381785,
         ],
         [
             'Заголовок метки 2',
             'Описание метки',
-            [37.1518431, 56.7381785]
+            37.1518431, 
+            56.7381785,
         ],
         [
             'Заголовок метки 3',
             'Описание метки',
-            [37.1558431, 56.7371785]
+            37.1558431, 
+            56.7371785,
         ],
         [
             'Заголовок метки 4',
             'Описание метки',
-            [37.1558431, 56.7391785]
+            37.1558431, 
+            56.7391785,
         ],
     ];
 
@@ -77,13 +81,14 @@ class AppFixtures extends Fixture
     }
 
     private function markersLoad($manager) {
-        foreach(self::MARKERS as list($title, $description, $coords)){
+        foreach(self::MARKERS as list($title, $description, $lat, $lon)){
             $ref = $this->getReference(self::USERS[rand(0, count(self::USERS)-1)][0]);
 
             $marker = new Marker();
             $marker->setTitle($title);
             $marker->setDescription($description);
-            $marker->setCoord($coords);
+            $marker->setLat($lat);
+            $marker->setLon($lon);
             $marker->setUsers($ref);
 
             $manager->persist($marker);

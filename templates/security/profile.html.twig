@@ -13,9 +13,16 @@
         <div class="user-pointers__pointer">
             <h5>{{ marker.title }}</h5>
             <p>{{ marker.description }}</p>
+            <div class="user-pointers__pointer-buttons">
+                <a href="{{ path('marker_edit', {'id': marker.id }) }}">Изменить</a>
+                <a href="{{ path('marker_delete', {'id': marker.id }) }}">Удалить</a>
+            </div>
         </div>
     {% else %}
-        <p>Теперь вы можете добавить сколько угодно заметок на карту</p>
+        <p>
+            Теперь вы можете добавить сколько угодно заметок на карту, 
+            просто кликните по ней чтобы взять текущие координаты объекта
+        </p>
     {% endfor %}
     </div>
     <div class="marker-add">

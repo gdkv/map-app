@@ -16,8 +16,8 @@ class MarkerType extends AbstractType
         $builder
             ->add('title', TextType::class, ['label' => false,])
             ->add('description', TextareaType::class, ['label' => false,])
-            ->add('lat', TextType::class, ['mapped' => false, 'label' => false,])
-            ->add('lon', TextType::class, ['mapped' => false, 'label' => false,])
+            ->add('lat', TextType::class, ['label' => false,])
+            ->add('lon', TextType::class, ['label' => false,])
         ;
     }
 
