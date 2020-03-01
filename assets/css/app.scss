@@ -56,6 +56,21 @@ p {
     padding: 50px 20px 0;
     box-sizing: border-box;
 
+    &-flash {
+        font-size: 13px;
+        background-color: #D81159;
+        padding: 4px 20px;
+        color: #dfdfdf;
+
+        img.emojione {
+            margin: 0px !important;
+            display: inline !important;
+            
+            height: auto;
+            width: 20px;
+        }
+    }
+
     &-logo {
         display: block;
         text-align: center;
@@ -142,9 +157,18 @@ p {
                 margin-top: 30px;
                 position: relative;
                 width: 100%;
-                height: 350px;
+                height: 285px;
 
                 &__pointer {
+                    .user-pointers__pointer-link {
+                        color: #dfdfdf;
+                        font-weight: 700;
+                        font-size: 17.5px;
+
+                        &:hover {
+                            text-decoration: none;
+                        }
+                    }
                     p {
                         margin-bottom: 5px;
                     }

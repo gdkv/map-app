@@ -11,7 +11,9 @@
     <div class="user-pointers">
     {% for marker in markers %}
         <div class="user-pointers__pointer">
-            <h5>{{ marker.title }}</h5>
+            <a href="#" class="user-pointers__pointer-link" data-lat="{{ marker.lat }}" data-lon="{{ marker.lon }}">
+                {{ marker.title }}
+            </a>
             <p>{{ marker.description }}</p>
             <div class="user-pointers__pointer-buttons">
                 <a href="{{ path('marker_edit', {'id': marker.id }) }}">Изменить</a>

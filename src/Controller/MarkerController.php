@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 /**
  * @Route("/marker")
@@ -21,9 +22,15 @@ class MarkerController extends AbstractController
      */
     private $markerRepository;
 
-    public function __construct(MarkerRepository $markerRepository)
+    /**
+     * @var FlashBagInterface
+     */
+    private $flashBag;
+
+    public function __construct(MarkerRepository $markerRepository, FlashBagInterface $flashBag)
     {
         $this->markerRepository = $markerRepository;
+        $this->flashBag = $flashBag;
     }
 
     /**
@@ -48,6 +55,7 @@ class MarkerController extends AbstractController
                     "coordinates" => [$marker->getLat(), $marker->getLon()]
                 ],
                 "properties" => [
+                    "id" => $marker->getId(),
                     "title" => $marker->getTitle(),
                     "description" => $marker->getDescription(),
                 ],
@@ -77,8 +85,11 @@ class MarkerController extends AbstractController
             $entityManager->persist($marker);
             $entityManager->flush();
 
+            $this->flashBag->add('notice', 'Точка добавлена 🙌');
+
             return $this->redirectToRoute('map_index');
         }
+        
         return $this->render('marker/add.html.twig', [
             'markerForm' => $form->createView(),
         ]);
@@ -100,8 +111,11 @@ class MarkerController extends AbstractController
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->flush();
 
+            $this->flashBag->add('notice', 'Точка изменена 🤟');
+
             return $this->redirectToRoute('map_index');
         }
+
         return $this->render('marker/add.html.twig', [
             'markerForm' => $form->createView(),
         ]);
@@ -116,6 +130,9 @@ class MarkerController extends AbstractController
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($marker);
         $entityManager->flush();
+
+        $this->flashBag->add('notice', 'Точка удалена 😭');
+
         return $this->redirectToRoute('map_index');
     }
 }

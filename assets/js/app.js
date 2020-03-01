@@ -30,6 +30,7 @@ fetch(url)
         data.features.forEach(function(marker) {
             var el = document.createElement('div');
             el.className = 'marker';
+            el.id = 'marker-' + marker.properties.id;
           
             new mapboxgl.Marker(el)
               .setLngLat(marker.geometry.coordinates)
@@ -48,4 +49,14 @@ fetch(url)
 const container = document.querySelector('.user-pointers');
 if (container){
     const ps = new PerfectScrollbar(container);
+}
+
+const userMarkers = document.querySelectorAll('.user-pointers__pointer-link');
+for (const marker of userMarkers) {
+  marker.addEventListener('click', function(event) {
+    event.preventDefault();
+    let lat = event.target.dataset.lat;
+    let lon = event.target.dataset.lon;
+    map.flyTo({ center: [lat, lon] });
+  }, false)
 }
