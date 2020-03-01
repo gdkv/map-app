@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -41,6 +43,16 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $fullName;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Marker", mappedBy="users")
+     */
+    private $marker;
+
+    public function __construct()
+    {
+        $this->marker = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -138,5 +150,36 @@ class User implements UserInterface
     public function prePersist()
     {
         $this->roles = ['ROLE_USER'];
+    }
+
+    /**
+     * @return Collection|Marker[]
+     */
+    public function getMarker(): Collection
+    {
+        return $this->marker;
+    }
+
+    public function addMarker(Marker $marker): self
+    {
+        if (!$this->marker->contains($marker)) {
+            $this->marker[] = $marker;
+            $marker->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMarker(Marker $marker): self
+    {
+        if ($this->marker->contains($marker)) {
+            $this->marker->removeElement($marker);
+            // set the owning side to null (unless already changed)
+            if ($marker->getUsers() === $this) {
+                $marker->setUsers(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -11,9 +11,20 @@
     </head>
     <body>
         <main id="main">
-            
-            {% block body %}{% endblock %}
+            <aside class="aside">
+                <a href="/" class='aside-logo'>map<span>app</span></a>
+                
+                {% block body %}{% endblock %}
 
+                <div class="aside-bottom">
+                    {% if is_granted('ROLE_USER') %}
+                        <a href="{{ path('map_logout') }}">Выход</a>
+                    {% else %}
+                        <a href="{{ path('map_register') }}">Регистрация</a>
+                    {% endif %}
+                    <a href="#">О сервисе</a>
+                </div>
+            </aside>
         </main>
         
         {% block javascripts %}

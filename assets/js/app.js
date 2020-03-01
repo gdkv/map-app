@@ -1,5 +1,6 @@
+import PerfectScrollbar from 'perfect-scrollbar';
 var mapboxgl = require('mapbox-gl/dist/mapbox-gl.js');
- 
+
 mapboxgl.accessToken = 'pk.eyJ1IjoiZGltYWd1ZGtvdiIsImEiOiJjanAwNXVvN2gyc2JoM21ucnNhdmFobm9hIn0.fxJ2-ihm6ij4slQCh7Nymg';
 var map = new mapboxgl.Map({
     container: 'main',
@@ -37,6 +38,14 @@ var geojson = {
     }]
   };
 
+  fetch(url) // Call the fetch function passing the url of the API as a parameter
+  .then(function() {
+      // Your code for handling the data you get from the API
+  })
+  .catch(function() {
+      // This is where you run code if the server returns any errors
+  });
+  
 // add markers to map
 geojson.features.forEach(function(marker) {
 
