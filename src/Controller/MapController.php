@@ -50,4 +50,12 @@ class MapController extends AbstractController
     {
 
     }
+
+    /**
+     * @Route("/info", name="map_info")
+     */
+    public function info() 
+    {
+        return $this->render('map/info.html.twig');
+    }
 }
